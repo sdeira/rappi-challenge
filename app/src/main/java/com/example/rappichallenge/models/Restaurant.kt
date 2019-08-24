@@ -9,7 +9,7 @@ import java.io.Serializable
 data class Restaurant(
     @Json(name = "id")
     @PrimaryKey
-    val id: String,
+    val id: String?,
 
     @Json(name = "name")
     val name: String?

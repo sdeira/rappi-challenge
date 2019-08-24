@@ -7,6 +7,7 @@ buildscript {
     ext.arch_version = '1.0.0-beta02'
     ext.moshiKotlinVersion = '1.8.0'
     ext.moshi_converter_version = '2.4.0'
+    ext.lifecycle_version = '2.2.0-alpha02'
     repositories {
         google()
         jcenter()

@@ -17,9 +17,14 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            testCoverageEnabled true
+            buildConfigField 'String', "ZomatoApiKey", zomato_api_key
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', "ZomatoApiKey", zomato_api_key
         }
     }
     compileOptions {
@@ -61,4 +66,7 @@ dependencies {
     //moshi
     implementation "com.squareup.moshi:moshi-kotlin:$moshiKotlinVersion"
     implementation "com.squareup.moshi:moshi-adapters:$moshiKotlinVersion"
+
+    // LiveData & ViewModel
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 }
