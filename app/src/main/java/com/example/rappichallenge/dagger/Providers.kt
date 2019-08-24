@@ -1,6 +1,11 @@
 package com.example.rappichallenge.dagger
 
+import android.app.Application
+import androidx.room.Database
+import androidx.room.Room
 import com.example.rappichallenge.NearbyRestaurantsAdapterFactory
+import com.example.rappichallenge.repository.local.AppDataBase
+import com.example.rappichallenge.repository.local.RestaurantsDAO
 import com.example.rappichallenge.repository.remote.AppService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -14,7 +19,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
-class Providers {
+class Providers() {
+
     @Provides
     @Singleton
     fun providesMoshi(): Moshi = Moshi.Builder().add(NearbyRestaurantsAdapterFactory()).add(KotlinJsonAdapterFactory()).build()
