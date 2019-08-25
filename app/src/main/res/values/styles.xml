@@ -5,9 +5,21 @@
 
     <style name="Restaurants"/>
     <style name="Restaurants.Title">
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="Restaurants.Cuisine">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="Restaurants.Phone">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/gray</item>
     </style>
 
 

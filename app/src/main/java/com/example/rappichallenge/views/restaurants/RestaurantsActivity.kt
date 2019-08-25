@@ -30,7 +30,6 @@ class RestaurantsActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
         setSupportActionBar(toolbar)
 
-        viewModel.loadRestaurants("-34.454350", "-58.538330")
         val adapter = RestaurantsAdapter(viewModel.getRestaurants())
         val layoutManager = LinearLayoutManager(this)
         viewModel.getRestaurants().observe(this, Observer {
@@ -38,6 +37,11 @@ class RestaurantsActivity : AppCompatActivity() {
         })
         restaurants_list.layoutManager = layoutManager
         restaurants_list.adapter = adapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadRestaurants("37.1929572", "-123.8008197,6z")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -50,7 +54,7 @@ class RestaurantsActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                //TODO = Filter list
+                (restaurants_list.adapter as RestaurantsAdapter).filter.filter(newText)
                 return false
             }
         })

@@ -15,7 +15,7 @@ class RestaurantsAdapter(private val restaurants: LiveData<List<Restaurant>>)
     private var filteredRestaurants: List<Restaurant>? = null
 
     override fun getFilter(): Filter {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return RestaurantsFilter(restaurants.value!!, this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRestaurantViewHolder {
@@ -25,6 +25,9 @@ class RestaurantsAdapter(private val restaurants: LiveData<List<Restaurant>>)
     }
 
     override fun getItemCount(): Int {
+        filteredRestaurants?.let {
+            return it.size
+        }
         return restaurants.value?.size ?: 0
     }
 

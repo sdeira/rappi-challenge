@@ -40,7 +40,7 @@ class RestaurantsViewModel @Inject constructor(private val appRepositoryImplemen
         appRepositoryImplementation.getRestaurantsFromApi(lat, long)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
-            .debounce(400, TimeUnit.MILLISECONDS)
+            .debounce(800, TimeUnit.MILLISECONDS)
             .subscribe(disposableObserver)
     }
 

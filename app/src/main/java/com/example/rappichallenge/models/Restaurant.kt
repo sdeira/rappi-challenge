@@ -12,5 +12,26 @@ data class Restaurant(
     val id: String,
 
     @Json(name = "name")
-    val name: String?
+    val name: String?,
+
+    @Json(name = "url")
+    val url: String?,
+
+    @Json(name = "average_cost_for_two")
+    val averageCostForTwo: String?,
+
+    @Json(name = "thumb")
+    val thumb: String?,
+
+    @Json(name = "featured_image")
+    val featuredImage: String?,
+
+    @Json(name = "has_online_delivery")
+    val hasOnlineDelivery: String?,
+
+    @Json(name = "cuisines")
+    val cuisines: String?,
+
+    @Json(name = "phone_numbers")
+    val phoneNumbers: String?
 ) : Serializable
