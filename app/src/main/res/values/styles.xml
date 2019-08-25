@@ -30,6 +30,13 @@
         <item name="android:textColor">@color/gray</item>
     </style>
 
+    <style name="Restaurants.Error">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
     <style name="Map"/>
     <style name="Map.Title">
         <item name="android:textSize">20sp</item>

@@ -1,7 +1,9 @@
 package com.example.rappichallenge.views.restaurants
 
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
@@ -10,6 +12,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rappichallenge.R
 import com.example.rappichallenge.viewmodels.RestaurantsViewModel
+import com.example.rappichallenge.views.MapsActivity.Companion.LAT
+import com.example.rappichallenge.views.MapsActivity.Companion.LONG
+import com.example.rappichallenge.views.MapsActivity.Companion.PREFS_NAME
+import com.google.android.gms.maps.model.LatLng
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.restaurants_activity.*
 import javax.inject.Inject
@@ -35,13 +41,23 @@ class RestaurantsActivity : AppCompatActivity() {
         viewModel.getRestaurants().observe(this, Observer {
             adapter.notifyDataSetChanged()
         })
+        viewModel.restaurantsError.observe(this, Observer {
+            error_text.visibility = if (it) View.VISIBLE else View.GONE
+        })
+        viewModel.isLoading.observe(this, Observer {
+            loading_spinner.visibility = if (it) View.VISIBLE else View.GONE
+        })
         restaurants_list.layoutManager = layoutManager
         restaurants_list.adapter = adapter
+
+        val latLong = getLatLong()
+        viewModel.loadRestaurants(latLong.latitude.toString(), latLong.longitude.toString())
+
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.loadRestaurants("37.1929572", "-123.8008197,6z")
+    fun getLatLong() : LatLng {
+        val prefs =  getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        return LatLng(prefs.getString(LAT, "0").toDouble(), prefs.getString(LONG, "0").toDouble())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

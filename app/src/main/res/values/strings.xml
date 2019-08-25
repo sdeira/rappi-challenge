@@ -3,4 +3,6 @@
     <string name="activity_maps_title">Esta es tu ubicacíon?</string>
     <string name="activity_maps_subtitle">Necesitamos confirmar tu ubicacion para una mejor experiencia.</string>
     <string name="activity_maps_button_text">Confirmar Ubicación</string>
+    <string name="loading_text">Cargando Restaurantes</string>
+    <string name="error_text">Ups.. no hemos podido cargar los datos</string>
 </resources>

@@ -1,5 +1,8 @@
 package com.example.rappichallenge.repository.remote
 
+import android.app.Application
+import android.content.Context.CONNECTIVITY_SERVICE
+import android.net.ConnectivityManager
 import com.example.rappichallenge.BuildConfig
 import com.example.rappichallenge.models.NearbyRestaurants
 import com.example.rappichallenge.models.Restaurant
@@ -13,6 +16,10 @@ class AppRepositoryImplementation @Inject constructor(private val appService: Ap
 
     override fun getRestaurantFromDB(id: String): Observable<Restaurant> {
         return restaurantsDAO.queryRestaurant(id)
+    }
+
+    override fun getRestaurantsFromDB() : Observable<List<Restaurant>> {
+        return restaurantsDAO.queryRestaurants().toObservable()
     }
 
     override fun getRestaurantsFromApi(lat: String, long: String): Observable<NearbyRestaurants> {
