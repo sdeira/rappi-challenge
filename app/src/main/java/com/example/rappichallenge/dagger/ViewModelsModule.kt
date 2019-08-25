@@ -2,6 +2,7 @@ package com.example.rappichallenge.dagger
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.rappichallenge.viewmodels.RestaurantDetailViewModel
 import com.example.rappichallenge.viewmodels.RestaurantsViewModel
 import com.example.rappichallenge.viewmodels.ViewModelFactory
 import dagger.Binds
@@ -24,4 +25,9 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(RestaurantsViewModel::class)
     internal abstract fun restaurantsViewModel(viewModel: RestaurantsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RestaurantDetailViewModel::class)
+    internal abstract fun restaurantDetailViewModel(viewModel: RestaurantDetailViewModel): ViewModel
 }

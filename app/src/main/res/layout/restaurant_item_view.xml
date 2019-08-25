@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@android:color/white">
+    android:foreground="?attr/selectableItemBackground">
 
     <ImageView
         android:id="@+id/restaurant_item_view_image"
@@ -26,15 +26,30 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/restaurant_item_view_image"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/restaurant_item_view_rate"
         app:layout_constraintBottom_toTopOf="@+id/restaurant_item_view_cuisine"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
-        style="@style/Restaurants.Title"
+        style="@style/Restaurants.Name"
         android:layout_marginTop="20dp"
         />
+
+    <TextView
+        android:id="@+id/restaurant_item_view_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_star_rate"
+        android:drawableStart="@drawable/ic_star_rate"
+        tools:text="4.5"
+        android:gravity="center"
+        android:layout_marginRight="10dp"
+        style="@style/Restaurants.Rate"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/restaurant_item_view_cuisine"
+        app:layout_constraintLeft_toRightOf="@+id/restaurant_item_view_name"/>
 
     <TextView
         android:id="@+id/restaurant_item_view_cuisine"

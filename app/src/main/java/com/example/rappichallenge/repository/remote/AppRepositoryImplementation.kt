@@ -11,6 +11,10 @@ class AppRepositoryImplementation @Inject constructor(private val appService: Ap
                                                       val restaurantsDAO: RestaurantsDAO)
     : AppRepository {
 
+    override fun getRestaurantFromDB(id: String): Observable<Restaurant> {
+        return restaurantsDAO.queryRestaurant(id)
+    }
+
     override fun getRestaurantsFromApi(lat: String, long: String): Observable<NearbyRestaurants> {
         return appService.getNearbyRestaurants(lat, long).doOnNext {
             for (restaurant in it.nearbyRestaurants) {

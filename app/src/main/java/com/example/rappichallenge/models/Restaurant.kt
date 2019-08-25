@@ -1,5 +1,6 @@
 package com.example.rappichallenge.models
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
@@ -25,6 +26,10 @@ data class Restaurant(
 
     @Json(name = "featured_image")
     val featuredImage: String?,
+
+    @Json(name = "user_rating")
+    @ColumnInfo(name = "user_rating")
+    val userRating: UserRating?,
 
     @Json(name = "has_online_delivery")
     val hasOnlineDelivery: String?,

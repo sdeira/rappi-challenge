@@ -6,4 +6,5 @@ import io.reactivex.Observable
 
 interface AppRepository {
     fun getRestaurantsFromApi(lat: String, long: String): Observable<NearbyRestaurants>
+    fun getRestaurantFromDB(id: String): Observable<Restaurant>
 }
