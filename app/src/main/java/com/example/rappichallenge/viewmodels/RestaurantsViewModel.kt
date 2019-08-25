@@ -18,6 +18,10 @@ class RestaurantsViewModel @Inject constructor(private val appRepositoryImplemen
     var restaurantsError: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var disposableObserver: DisposableObserver<NearbyRestaurants>
 
+    fun getRestaurants() : MutableLiveData<List<Restaurant>> {
+        return restaurantsResult
+    }
+
     fun loadRestaurants(lat: String, long: String) {
         disposableObserver = object : DisposableObserver<NearbyRestaurants>() {
             override fun onComplete() {

@@ -1,0 +1,33 @@
+package com.example.rappichallenge.views.restaurants
+
+import android.widget.Filter
+import com.example.rappichallenge.models.Restaurant
+
+class RestaurantsFilter(private val movies: List<Restaurant>, private val adapter: RestaurantsAdapter)
+    : Filter() {
+    override fun performFiltering(constraint: CharSequence?): FilterResults {
+        val results = FilterResults()
+
+        if (constraint.isNullOrEmpty()) {
+            results.count = movies.size
+            results.values = movies
+        } else {
+            val filteredMovies = mutableListOf<Restaurant>()
+
+            movies.forEach {
+                if (it.name?.contains(constraint, true)!!)
+                    filteredMovies.add(it)
+            }
+            results.count = filteredMovies.size
+            results.values = filteredMovies
+        }
+
+        return results
+    }
+
+    override fun publishResults(p0: CharSequence?, results: FilterResults?) {
+        adapter.setFilteredRestaurant(results?.values as List<Restaurant>)
+        adapter.notifyDataSetChanged()
+    }
+
+}
