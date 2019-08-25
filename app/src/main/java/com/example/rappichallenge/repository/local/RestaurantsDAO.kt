@@ -10,10 +10,10 @@ import com.example.rappichallenge.models.Restaurant
 @Dao
 interface RestaurantsDAO {
     @Query("SELECT * FROM restaurants")
-    fun queryCryptocurrencies(): LiveData<List<Restaurant>>
+    fun queryRestaurants(): LiveData<List<Restaurant>>
 
     @Insert(
         onConflict = OnConflictStrategy.REPLACE
     )
-    fun insertCryptocurrency(cryptocurrency: Restaurant)
+    fun insertRestaurant(restaurant: Restaurant)
 }

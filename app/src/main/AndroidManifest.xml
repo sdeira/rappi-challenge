@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".RappiTestApplication">
-        <activity android:name=".RestaurantsActivity" >
+        <activity android:name=".views.RestaurantsActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,6 +1,6 @@
 package com.example.rappichallenge.dagger
 
-import com.example.rappichallenge.RestaurantsActivity
+import com.example.rappichallenge.views.RestaurantsActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

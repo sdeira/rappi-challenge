@@ -1,9 +1,10 @@
-package com.example.rappichallenge
+package com.example.rappichallenge.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.example.rappichallenge.R
 import com.example.rappichallenge.viewmodels.RestaurantsViewModel
 import dagger.android.AndroidInjection
 import javax.inject.Inject
