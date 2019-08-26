@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RappiChallenge.iml" filepath="$PROJECT_DIR$/RappiChallenge.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/rappi-challenge.iml" filepath="$PROJECT_DIR$/.idea/rappi-challenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rappi-challenge-RappiChallenge.iml" filepath="$PROJECT_DIR$/rappi-challenge-RappiChallenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/rappi-challenge-app.iml" filepath="$PROJECT_DIR$/app/rappi-challenge-app.iml" />
     </modules>
   </component>
 </project>
