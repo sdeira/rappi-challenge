@@ -9,7 +9,7 @@ Librerias utilizadas: Dagger2, Retrofit + OkHttp, Room, Glide, Mockito, Robolect
 Herramienta de análisis estático de códgio: detekt
 
 ## Arquitectura
-![arquitectura](https://github.com/sdeira/RappiChallenge/blob/master/challenge_architecture.png)
+![arquitectura](https://github.com/sdeira/rappi-challenge/blob/master/challenge_architecture.png)
 
 ## Estructura del proyecto
 <pre>
