@@ -21,6 +21,9 @@ data class Restaurant(
     @Json(name = "average_cost_for_two")
     val averageCostForTwo: String?,
 
+    @Json(name = "currency")
+    val currency: String?,
+
     @Json(name = "thumb")
     val thumb: String?,
 
@@ -33,6 +36,9 @@ data class Restaurant(
 
     @Json(name = "has_online_delivery")
     val hasOnlineDelivery: String?,
+
+    @Json(name = "is_delivering_now")
+    val isDeliveringNow: String?,
 
     @Json(name = "cuisines")
     val cuisines: String?,

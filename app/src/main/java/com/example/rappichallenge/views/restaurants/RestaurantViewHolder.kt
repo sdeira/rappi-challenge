@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat.getColor
 import com.bumptech.glide.Glide
+import com.example.rappichallenge.R
 import com.example.rappichallenge.models.Restaurant
 import com.example.rappichallenge.utils.PalleteRequestListener
 import com.example.rappichallenge.views.restaurant_detail.RestaurantDetailActivity
@@ -32,8 +33,8 @@ class RestaurantViewHolder(itemView: View) : BaseRestaurantViewHolder(itemView) 
         this.restaurant = restaurant
         itemView.restaurant_item_view_name.text = restaurant.name
         itemView.restaurant_item_view_cuisine.text = restaurant.cuisines
-        itemView.restaurant_item_view_average_cost.text = "Costo Promedio para dos personas:" +
-                restaurant.averageCostForTwo
+        itemView.restaurant_item_view_average_cost.text = itemView.context.getString(R.string.average_price) +
+                restaurant.averageCostForTwo + restaurant.currency
         itemView.restaurant_item_view_rate.text = restaurant.userRating?.aggregateRating
         setTextViewDrawableColor(itemView.restaurant_item_view_rate, Color.parseColor("#"
                 + restaurant.userRating?.ratingColor))

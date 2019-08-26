@@ -19,6 +19,10 @@ class RestaurantsViewModel @Inject constructor(
     private val appRepositoryImplementation: AppRepositoryImplementation
 ) : ViewModel() {
 
+    companion object {
+        private val TIME_OUT: Long = 800
+    }
+
     var restaurantsResult: MutableLiveData<List<Restaurant>> = MutableLiveData()
     var restaurantsError: MutableLiveData<Boolean> = MutableLiveData(false)
     var isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
@@ -65,13 +69,13 @@ class RestaurantsViewModel @Inject constructor(
             appRepositoryImplementation.getRestaurantsFromApi(lat, long)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .debounce(800, TimeUnit.MILLISECONDS)
+                .debounce(TIME_OUT, TimeUnit.MILLISECONDS)
                 .subscribe(apiRestaurantsObserver)
         } else {
             appRepositoryImplementation.getRestaurantsFromDB()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .debounce(800, TimeUnit.MILLISECONDS)
+                .debounce(TIME_OUT, TimeUnit.MILLISECONDS)
                 .subscribe(dbRestaurantsObserver)
         }
     }

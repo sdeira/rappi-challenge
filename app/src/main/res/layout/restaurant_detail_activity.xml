@@ -28,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/restaurant_detail_activity_image"
                 android:layout_width="match_parent"
@@ -38,6 +39,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Restaurants.Name"
+                tools:text="Kansas"/>
+
+            <TextView
+                android:id="@+id/restaurant_detail_activity_cuisine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Restaurants.Cuisine"
+                android:layout_marginTop="10dp"
+                tools:text="Kansas"/>
+
+            <TextView
+                android:id="@+id/restaurant_detail_activity_average"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Restaurants.Average"
+                android:layout_marginTop="10dp"
+                tools:text="Kansas"/>
+
+            <TextView
+                android:id="@+id/restaurant_detail_activity_has_delivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Restaurants.HasDelivery"
+                android:layout_marginTop="10dp"
                 tools:text="Kansas"/>
 
         </LinearLayout>
