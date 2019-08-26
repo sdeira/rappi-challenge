@@ -3,23 +3,23 @@ package com.example.rappichallenge.views.restaurants
 import android.widget.Filter
 import com.example.rappichallenge.models.Restaurant
 
-class RestaurantsFilter(private val movies: List<Restaurant>, private val adapter: RestaurantsAdapter)
+class RestaurantsFilter(private val restaurants: List<Restaurant>, private val adapter: RestaurantsAdapter)
     : Filter() {
     override fun performFiltering(constraint: CharSequence?): FilterResults {
         val results = FilterResults()
 
         if (constraint.isNullOrEmpty()) {
-            results.count = movies.size
-            results.values = movies
+            results.count = restaurants.size
+            results.values = restaurants
         } else {
-            val filteredMovies = mutableListOf<Restaurant>()
+            val filteredRestaurants = mutableListOf<Restaurant>()
 
-            movies.forEach {
+            restaurants.forEach {
                 if (it.name?.contains(constraint, true)!!)
-                    filteredMovies.add(it)
+                    filteredRestaurants.add(it)
             }
-            results.count = filteredMovies.size
-            results.values = filteredMovies
+            results.count = filteredRestaurants.size
+            results.values = filteredRestaurants
         }
 
         return results

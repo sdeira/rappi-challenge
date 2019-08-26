@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rappichallenge.models.NearbyRestaurants
 import com.example.rappichallenge.models.Restaurant
+import com.example.rappichallenge.repository.remote.AppRepository
 import com.example.rappichallenge.repository.remote.AppRepositoryImplementation
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,8 +13,9 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class RestaurantDetailViewModel @Inject constructor(private val appRepositoryImplementation:
-                                                    AppRepositoryImplementation) : ViewModel() {
+class RestaurantDetailViewModel @Inject constructor(private val appRepository:
+                                                    AppRepository
+) : ViewModel() {
 
     var restaurantLiveData: MutableLiveData<Restaurant> = MutableLiveData()
     var restaurantError: MutableLiveData<Boolean> = MutableLiveData()
@@ -34,7 +36,7 @@ class RestaurantDetailViewModel @Inject constructor(private val appRepositoryImp
             }
         }
 
-        appRepositoryImplementation.getRestaurantFromDB(id)
+        appRepository.getRestaurantFromDB(id)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .debounce(800, TimeUnit.MILLISECONDS)

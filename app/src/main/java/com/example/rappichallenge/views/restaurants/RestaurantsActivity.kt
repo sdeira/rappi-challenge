@@ -38,6 +38,9 @@ class RestaurantsActivity : AppCompatActivity() {
 
         val adapter = RestaurantsAdapter(viewModel.getRestaurants())
         val layoutManager = LinearLayoutManager(this)
+        restaurants_list.layoutManager = layoutManager
+        restaurants_list.adapter = adapter
+
         viewModel.getRestaurants().observe(this, Observer {
             adapter.notifyDataSetChanged()
         })
@@ -47,8 +50,6 @@ class RestaurantsActivity : AppCompatActivity() {
         viewModel.isLoading.observe(this, Observer {
             loading_spinner.visibility = if (it) View.VISIBLE else View.GONE
         })
-        restaurants_list.layoutManager = layoutManager
-        restaurants_list.adapter = adapter
 
         val latLong = getLatLong()
         viewModel.loadRestaurants(latLong.latitude.toString(), latLong.longitude.toString())

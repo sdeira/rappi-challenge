@@ -52,16 +52,20 @@ class RestaurantDetailActivity : AppCompatActivity() {
     }
 
     fun setupView(restaurant: Restaurant) {
-        Glide.with(this)
-            .load(restaurant.featuredImage)
-            .placeholder(ColorDrawable(Color.BLACK))
-            .listener(PalleteRequestListener(restaurant_detail_activity_image, PorterDuff.Mode.OVERLAY))
-            .into(restaurant_detail_activity_image)
+        loadImage(restaurant.featuredImage)
         restaurant_detail_activity_name.text = restaurant.name
         restaurant_detail_activity_cuisine.text = restaurant.cuisines
         restaurant_detail_activity_average.text = getString(R.string.average_price) +
                 restaurant.averageCostForTwo + restaurant.currency
         restaurant_detail_activity_has_delivery.text = getString(R.string.has_delivery) +
                 if (restaurant.hasOnlineDelivery?.equals("0")!!) "NO" else "SI"
+    }
+
+    fun loadImage(imageUri: String?) {
+        Glide.with(this)
+            .load(imageUri)
+            .placeholder(R.drawable.ic_placeholder)
+            .listener(PalleteRequestListener(restaurant_detail_activity_image, PorterDuff.Mode.OVERLAY))
+            .into(restaurant_detail_activity_image)
     }
 }

@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rappichallenge.models.NearbyRestaurants
 import com.example.rappichallenge.models.Restaurant
-import com.example.rappichallenge.repository.remote.AppRepositoryImplementation
+import com.example.rappichallenge.repository.remote.AppRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 class RestaurantsViewModel @Inject constructor(
     private val app: Application,
-    private val appRepositoryImplementation: AppRepositoryImplementation
+    private val appRepository: AppRepository
 ) : ViewModel() {
 
     companion object {
@@ -29,10 +29,18 @@ class RestaurantsViewModel @Inject constructor(
     lateinit var apiRestaurantsObserver: DisposableObserver<NearbyRestaurants>
     lateinit var dbRestaurantsObserver: DisposableObserver<List<Restaurant>>
 
+    /**
+     * Get restaurants LiveData
+     */
     fun getRestaurants() : MutableLiveData<List<Restaurant>> {
         return restaurantsResult
     }
 
+    /**
+     * Load restaurants from a specific location
+     * @lat the latitud of the location
+     * @long the longitud of the location
+     */
     fun loadRestaurants(lat: String, long: String) {
         isLoading.postValue(true)
 
@@ -66,13 +74,13 @@ class RestaurantsViewModel @Inject constructor(
         }
 
         if (isNetworkAvailable()) {
-            appRepositoryImplementation.getRestaurantsFromApi(lat, long)
+            appRepository.getRestaurantsFromApi(lat, long)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .debounce(TIME_OUT, TimeUnit.MILLISECONDS)
                 .subscribe(apiRestaurantsObserver)
         } else {
-            appRepositoryImplementation.getRestaurantsFromDB()
+            appRepository.getRestaurantsFromDB()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .debounce(TIME_OUT, TimeUnit.MILLISECONDS)
@@ -80,25 +88,31 @@ class RestaurantsViewModel @Inject constructor(
         }
     }
 
-    fun setResults(list: List<Restaurant>) {
+    private fun setResults(list: List<Restaurant>) {
         isLoading.postValue(false)
         restaurantsError.postValue(false)
         restaurantsResult.postValue(list)
     }
 
-    fun setError() {
+    private fun setError() {
         isLoading.postValue(false)
         restaurantsError.postValue(true)
     }
 
-
-    private fun isNetworkAvailable(): Boolean {
+    /**
+     * true if its available, false ifs not
+     */
+    fun isNetworkAvailable(): Boolean {
         val connectivityManager = app.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
         val activeNetworkInfo = connectivityManager!!.activeNetworkInfo
         return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 
+    /**
+     * Dispose elements of the observables
+     */
     fun disposeElements(){
         if(!apiRestaurantsObserver.isDisposed) apiRestaurantsObserver.dispose()
+        if(!dbRestaurantsObserver.isDisposed) dbRestaurantsObserver.dispose()
     }
 }

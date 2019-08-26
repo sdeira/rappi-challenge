@@ -38,10 +38,13 @@ class RestaurantViewHolder(itemView: View) : BaseRestaurantViewHolder(itemView) 
         itemView.restaurant_item_view_rate.text = restaurant.userRating?.aggregateRating
         setTextViewDrawableColor(itemView.restaurant_item_view_rate, Color.parseColor("#"
                 + restaurant.userRating?.ratingColor))
+        loadImage()
+    }
 
+    fun loadImage() {
         Glide.with(itemView)
             .load(restaurant.thumb)
-            .placeholder(ColorDrawable(Color.BLACK))
+            .placeholder(R.drawable.ic_placeholder)
             .listener(PalleteRequestListener(itemView.restaurant_item_view_image, PorterDuff.Mode.OVERLAY))
             .into(itemView.restaurant_item_view_image)
     }
