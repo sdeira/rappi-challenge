@@ -5,6 +5,6 @@
     <string name="activity_maps_button_text">Confirmar Ubicación</string>
     <string name="loading_text">Cargando Restaurantes</string>
     <string name="error_text">Ups.. no hemos podido cargar los datos</string>
-    <string name="average_price">El precio promedio para dos es de: </string>
-    <string name="has_delivery">Tiene delivery: </string>
+    <string name="average_price">El precio promedio para dos es de:</string>
+    <string name="has_delivery">Tiene delivery:</string>
 </resources>

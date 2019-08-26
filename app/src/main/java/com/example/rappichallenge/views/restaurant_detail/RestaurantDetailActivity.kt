@@ -1,10 +1,12 @@
 package com.example.rappichallenge.views.restaurant_detail
 
-import android.graphics.Color
+import android.content.Intent
 import android.graphics.PorterDuff
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.ShareActionProvider
+import androidx.core.view.MenuItemCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -15,13 +17,17 @@ import com.example.rappichallenge.utils.PalleteRequestListener
 import com.example.rappichallenge.viewmodels.RestaurantDetailViewModel
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.restaurant_detail_activity.*
+import kotlinx.android.synthetic.main.restaurants_activity.*
 import javax.inject.Inject
+
 
 class RestaurantDetailActivity : AppCompatActivity() {
 
     companion object {
         const val RESTAURANT_EXTRA = "restaurant_extra"
     }
+
+    private var shareActionProvider: ShareActionProvider? = null
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -51,6 +57,27 @@ class RestaurantDetailActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.detail_menu, menu)
+        menu.findItem(R.id.action_share).also { menuItem ->
+            // Fetch and store ShareActionProvider
+            shareActionProvider = MenuItemCompat.getActionProvider(menuItem) as ShareActionProvider
+        }
+
+        // Return true to display menu
+        return true
+    }
+
+    fun getShareIntent(name: String?, url: String?) : Intent {
+        val share = Intent(Intent.ACTION_SEND)
+        share.type = "text/plain"
+        share.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        share.putExtra(Intent.EXTRA_SUBJECT, name)
+        share.putExtra(Intent.EXTRA_TEXT, url)
+
+        return share
+    }
+
     fun setupView(restaurant: Restaurant) {
         loadImage(restaurant.featuredImage)
         restaurant_detail_activity_name.text = restaurant.name
@@ -59,6 +86,7 @@ class RestaurantDetailActivity : AppCompatActivity() {
                 restaurant.averageCostForTwo + restaurant.currency
         restaurant_detail_activity_has_delivery.text = getString(R.string.has_delivery) +
                 if (restaurant.hasOnlineDelivery?.equals("0")!!) "NO" else "SI"
+        shareActionProvider?.setShareIntent(getShareIntent(restaurant.name, restaurant.url))
     }
 
     fun loadImage(imageUri: String?) {
